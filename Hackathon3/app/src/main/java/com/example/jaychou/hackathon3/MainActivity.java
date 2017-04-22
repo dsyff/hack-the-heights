@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> namelist;
     private ArrayList<String> schedulelist;
     private ArrayList<String> locationlist;
+    private String  bding;
 
 
     ArrayList<String> generallist;
@@ -68,10 +69,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        final String generalfile = "generalTemp1.txt";
-        final String courseNamefile ="courseNameTemp1.txt";
-        final String courseSchedulefile="courseScheduleTemp1.txt";
-        final String courseLocationfile="courseLocationTemp1.txt";
+        final String generalfile = "generalTemp2.txt";
+        final String courseNamefile ="courseNameTemp2.txt";
+        final String courseSchedulefile="courseScheduleTemp2.txt";
+        final String courseLocationfile="courseLocationTemp2.txt";
 
         namelist=new ArrayList<String>();
         schedulelist=new ArrayList<String>();
@@ -79,9 +80,9 @@ public class MainActivity extends AppCompatActivity {
         generallist=new ArrayList<String>();
 
 
-        readFromFile("courseNameTemp1.txt",namelist);
-        readFromFile("courseScheduleTemp1.txt",schedulelist);
-        readFromFile("courseLocationTemp1.txt",locationlist);
+        readFromFile("courseNameTemp2.txt",namelist);
+        readFromFile("courseScheduleTemp2.txt",schedulelist);
+        readFromFile("courseLocationTemp2.txt",locationlist);
 
         for(int i=0;i<namelist.size();i++){
             String s="";
@@ -92,6 +93,18 @@ public class MainActivity extends AppCompatActivity {
             generallist.add(s);
         }
 
+//        List<Course> l = new ArrayList<Course>();
+//        for (int i = 0; i < namelist.size(); i++){
+//            AcademicBuilding ab = BuildingUpLocations.getAcademicBuilding(locationlist.get(i));
+//            Course c = new Course(namelist.get(i), schedulelist.get(i), ab);
+//            l.add(c);
+//        }
+//        Week week = new Week(l);
+//
+//        // Test one event
+//        Event event = week.monday.firstEvent;
+//        String name = event.name;
+//        bding = event.building.getBuildingName();
 
 
         lv = (ListView) findViewById(R.id.lv);
@@ -103,9 +116,9 @@ public class MainActivity extends AppCompatActivity {
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                removeFromFile("courseNameTemp1.txt",namelist,position);
-                removeFromFile("courseScheduleTemp1.txt",schedulelist,position);
-                removeFromFile("courseLocationTemp1.txt",locationlist,position);
+                removeFromFile("courseNameTemp2.txt",namelist,position);
+                removeFromFile("courseScheduleTemp2.txt",schedulelist,position);
+                removeFromFile("courseLocationTemp2.txt",locationlist,position);
                 generallist.remove(position);
 
 
@@ -114,10 +127,28 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //test position
-        String s=locationlist.get(0);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent edit = new Intent(MainActivity.this, EditActivity.class);
+                String s1=namelist.get(position);
+                String s2=schedulelist.get(position);
+                String s3=locationlist.get(position);
 
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+                edit.putExtra("s1",s1);
+                edit.putExtra("s2",s2);
+                edit.putExtra("s3",s3);
+                edit.putExtra("pos",Integer.toString(position));
+
+
+                startActivity(edit);
+            }
+        });
+
+        //test position
+        //String s=locationlist.get(0);
+
+        //Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
 
 
 
@@ -166,19 +197,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(add, 102);
                 Toast.makeText(this, "add Selected", Toast.LENGTH_SHORT).show();
                 return true;
-            case R.id.menu_delete:
+//            case R.id.menu_delete:
+////                // do stuff here
+//
+////                Toast.makeText(this, "Delete Selected", Toast.LENGTH_SHORT).show();
+//                return true;
+//            case R.id.menu_zhanglang:
 //                // do stuff here
-//                Intent deleteIntent = new Intent(MainActivity.this, DeleteActivity.class);
-//                startActivityForResult(deleteIntent, 103);
-                Toast.makeText(this, "Delete Selected", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.menu_zhanglang:
-                // do stuff here
-//                Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
-//                startActivityForResult(listIntent, 104);
-                Toast.makeText(this, "Zhanglang Selected", Toast.LENGTH_SHORT).show();
-
-                return true;
+////                Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
+////                startActivityForResult(listIntent, 104);
+////                Toast.makeText(this, "Zhanglang Selected", Toast.LENGTH_SHORT).show();
+//
+//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

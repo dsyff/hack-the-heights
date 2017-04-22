@@ -63,14 +63,14 @@ public class AddActivity extends AppCompatActivity {
         s1 = name.getText().toString();
         s2 = schedule.getText().toString();
         s3 = abspinner.getSelectedItem().toString();
-        saveStringToFile("courseNameTemp1.txt",s1+"\n");
-        saveStringToFile("courseScheduleTemp1.txt",s2+"\n");
-        saveStringToFile("courseLocationTemp1.txt",s3+"\n");
+        saveStringToFile("courseNameTemp2.txt",s1+"\n");
+        saveStringToFile("courseScheduleTemp2.txt",s2+"\n");
+        saveStringToFile("courseLocationTemp2.txt",s3+"\n");
         Toast.makeText(this, s1+" "+s2+" "+s3, Toast.LENGTH_SHORT).show();
 
-        AcademicBuilding ab = BuildingUpLocations.getAcademicBuilding(s3);
+        /*AcademicBuilding ab = BuildingUpLocations.getAcademicBuilding(s3);
         Course c = new Course(s1, s2, ab);
-        List<Course> l = new ArrayList<Course>();
+        List<Course> l = new ArrayList<Course>();*/
 
 
 

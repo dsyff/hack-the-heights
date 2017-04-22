@@ -11,6 +11,7 @@
     >
 
     <TextView
+        android:id="@+id/tv1"
         android:text="Show on Map"
         android:textSize="20sp"
         android:layout_gravity="center"
@@ -30,7 +31,7 @@
         />
 
     <TextView
-        android:text="ABCDE"
+        android:text="Click on Marker to See Detail"
         android:id="@+id/tv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

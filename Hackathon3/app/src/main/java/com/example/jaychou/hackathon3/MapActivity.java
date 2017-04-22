@@ -92,9 +92,9 @@ public class MapActivity extends AppCompatActivity
 
 
 
-        readFromFile("courseNameTemp1.txt",namelist);
-        readFromFile("courseScheduleTemp1.txt",schedulelist);
-        readFromFile("courseLocationTemp1.txt",locationlist);
+        readFromFile("courseNameTemp2.txt",namelist);
+        readFromFile("courseScheduleTemp2.txt",schedulelist);
+        readFromFile("courseLocationTemp2.txt",locationlist);
 
 //        String s=namelist.get(1);
 //        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
@@ -338,7 +338,11 @@ public class MapActivity extends AppCompatActivity
         map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                String title = marker.getSnippet();
+                String course = marker.getTitle();
+
+                Intent email=new Intent(MapActivity.this,EmailActivity.class);
+                email.putExtra("course",course);
+                startActivity(email);
                 //Toast.makeText(getApplicationContext(), "Info window clicked", Toast.LENGTH_LONG).show();
                 //Toast.makeText(getApplicationContext(), "title: " + title, Toast.LENGTH_LONG).show();
 //                Painting toSend;
@@ -373,30 +377,7 @@ public class MapActivity extends AppCompatActivity
     //matched lonlat from the address
 
 
-    public void findPlace(){
-        // loop through the ArrayList of locations and create a geocoder location for each
-        for (int i = 0; i < locationlist.size(); i++) {
 
-            if (map == null) {
-                map = ((MapFragment) getFragmentManager().findFragmentById(
-                        R.id.the_map)).getMap();
-            }
-
-            lat = BuildingUpLocations.getAcademicBuilding(locationlist.get(i)).getLocation().lat;
-            lng = BuildingUpLocations.getAcademicBuilding(locationlist.get(i)).getLocation().lng;
-            latLng = new LatLng(lat, lng);
-
-
-            map.addMarker(new MarkerOptions()
-                    .position(latLng).title("Academic Building"+locationlist.get(i).toString())
-                    .title("Course: " + namelist.get(i).toString())
-                    .snippet("Schedule: " + schedulelist.get(i).toString())
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
-
-
-        }
-
-    }
 
     public void getPlace(List<String> list1,List<String> list2,List<String> list3){
         // loop through the ArrayList of locations and create a geocoder location for each
@@ -414,8 +395,8 @@ public class MapActivity extends AppCompatActivity
 
             map.addMarker(new MarkerOptions()
                     .position(latLng)
-                    .title(list1.get(i).toString()+" at "+list3.get(i).toString())
-                    .snippet("Schedule: " + list2.get(i).toString())
+                    .title(list1.get(i).toString())
+                    .snippet(list3.get(i).toString()+"  " + list2.get(i).toString())
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
 
 
@@ -447,29 +428,29 @@ public class MapActivity extends AppCompatActivity
 
             if (isCurrentDay && (current > levent.get(i).startMinSince12)) {                                        // Past Event
                 map.addMarker(new MarkerOptions()
-                        .position(latLng).title("Academic Building" + levent.get(i).getBuildingName())
-                        .title("Course: " + levent.get(i).getEventName())
-                        .snippet("Schedule: " + levent.get(i).getTime())
+                        .position(latLng)
+                        .title(levent.get(i).getEventName())
+                        .snippet(levent.get(i).getBuildingName()+"  "+levent.get(i).getTime())
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN))
                         .alpha(0.2f));
             } else if (isCurrentDay && (current < levent.get(i).startMinSince12) && (levent.get(i).previousEvent.startMinSince12 < current)){                      // Next Event
                 map.addMarker(new MarkerOptions()
-                        .position(latLng).title("Academic Building" + levent.get(i).getBuildingName())
-                        .title("Course: " + levent.get(i).getEventName())
-                        .snippet("Schedule: " + levent.get(i).getTime())
+                        .position(latLng)
+                        .title(levent.get(i).getEventName())
+                        .snippet(levent.get(i).getBuildingName()+"   " + levent.get(i).getTime())
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
             } else if (isCurrentDay && (current < levent.get(i).startMinSince12)) {                      // Future Event
                 map.addMarker(new MarkerOptions()
-                        .position(latLng).title("Academic Building" + levent.get(i).getBuildingName())
-                        .title("Course: " + levent.get(i).getEventName())
-                        .snippet("Schedule: " + levent.get(i).getTime())
+                        .position(latLng)
+                        .title(levent.get(i).getEventName())
+                        .snippet(levent.get(i).getBuildingName()+"  "+levent.get(i).getTime())
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
                         .alpha(0.5f));
             }   else {
                 map.addMarker(new MarkerOptions()
-                        .position(latLng).title("Academic Building" + levent.get(i).getBuildingName())
-                        .title("Course: " + levent.get(i).getEventName())
-                        .snippet("Schedule: " + levent.get(i).getTime())
+                        .position(latLng)
+                        .title(levent.get(i).getEventName())
+                        .snippet(levent.get(i).getBuildingName()+"  "+levent.get(i).getTime())
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
             }
 

@@ -12,38 +12,61 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
         <TextView
+            android:id="@+id/tv0"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+
+            android:text=" Send the Abscence Email to"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="normal|bold"
+            android:textColor="@color/wallet_bright_foreground_holo_light"
+            android:textSize="20sp" />
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+        <TextView
             android:id="@+id/tv1"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:text="Course Number: "
+
+            android:text="Professor "
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textStyle="normal|bold"
-            android:textColor="@android:color/background_dark"
+            android:textColor="@color/wallet_bright_foreground_holo_light"
             android:textSize="20sp" />
 
         <EditText
             android:id="@+id/et1"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:hint="enter course name"
-
+            android:hint="Enter Professor name"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
 
-            android:layout_toEndOf="@+id/textView1" />
+            />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         >
+
         <TextView
             android:id="@+id/tv2"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
 
-            android:text="Course Schedule: "
+            android:text="With Email Address "
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textStyle="normal|bold"
             android:textColor="@color/wallet_bright_foreground_holo_light"
@@ -53,34 +76,10 @@
             android:id="@+id/et2"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:hint="Enter couse schedule"
+            android:hint="Enter Email Address "
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
 
             />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        >
-        <TextView
-            android:id="@+id/tv3"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-
-            android:text="Course Location: "
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@android:color/black"
-            android:textStyle="normal|bold"
-            android:textSize="20sp" />
-
-        <Spinner
-            android:id="@+id/abspinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></Spinner>
-
 
 
     </LinearLayout>
@@ -89,21 +88,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">
-        <Button
-            android:id="@+id/add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add"
-            android:onClick="add"
-            />
+
 
         <Button
-            android:id="@+id/clear"
+            android:id="@+id/send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Clear"
-            android:onClick="clear"
+            android:text="Yes, Send Email"
+            android:onClick="send"
             />
+
+
+
 
         <Button
             android:id="@+id/back"
@@ -112,7 +108,6 @@
             android:text="Back"
             android:onClick="back"
             />
-
 
     </LinearLayout>
 
