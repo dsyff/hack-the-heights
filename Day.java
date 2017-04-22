@@ -79,7 +79,7 @@ public class Day{
 			firstEvent = l.get(0);
 			l.get(0).nextEvent = l.get(1);
 			l.get(l.size() - 1).previousEvent = l.get(l.size() - 2);
-			for (int i = 1; i < l.size() - 2; i++){
+			for (int i = 1; i <= l.size() - 2; i++){
 				l.get(i).nextEvent = l.get(i+1);
 				l.get(i+1).previousEvent = l.get(i);
 			}

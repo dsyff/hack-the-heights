@@ -31,7 +31,9 @@ public class Week{
 		List<Course> cs = new ArrayList<Course>();
 		cs.add(new Course("MATH110101", "M W F 9", null));
 		cs.add(new Course("PHYS120001", "M W F 4 30*", null));
-		cs.add(new Course("CSCI120001", "", null));
+		cs.add(new Course("CSCI120001", "M W F 12 30", null));
+		cs.add(new Course("CSCI300001", "M W F 3", null));
+		cs.add(new Course("MATH880801", "M W F 6", null));
 		Week week = new Week(cs);
 		System.out.println(week.toString());
 
