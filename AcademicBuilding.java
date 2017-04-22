@@ -1,28 +1,26 @@
 public class AcademicBuilding implements BuildingI { 
 
- private String BuildingName;
+ private String buildingName;
  private Location location;
- private static String BuildingType = "Academic";
+ private static String buildingType = "Academic";
 
-
- public AcademicBuilding (String BuildingName, Location location){
-  this.BuildingName = BuildingName;
+ public AcademicBuilding (String buildingName, Location location){
+  this.buildingName = buildingName;
   this.location = location;  
  }
  public String getBuildingName(){
-  return BuildingName;
+  return buildingName;
  }
  
  public Location getLocation() {return location;}
  
  
  public String getType(){
-	 
-	 return BuildingType;
+  return buildingType;
  }
  
  public String getDescription(){
-	 return "Academic Building";
+  return "Academic Building";
  };
  
 }

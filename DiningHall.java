@@ -1,22 +1,22 @@
 public class DiningHall implements BuildingI {
  
- private final String BuildingName;
+ private final String buildingName;
  private Location location;
- private static String BuildingType = "DiningHall";
+ private static String buildingType = "DiningHall";
  private static String description;
 
- public DiningHall(String BuildingName, Location location, String description){
-  this.BuildingName = BuildingName;
+ public DiningHall(String buildingName, Location location, String description){
+  this.buildingName = buildingName;
   this.location = location;  
   this.description = description;
  }
  
  public String getBuildingName(){
-  return BuildingName;
+  return buildingName;
  }
  
  public String getType(){
-  return BuildingType;
+  return buildingType;
  }
  public Location getLocation() {return location;}
 
