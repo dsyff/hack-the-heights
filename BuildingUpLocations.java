@@ -115,31 +115,31 @@ public class BuildingUpLocations {
 }
  
  public static Location getABLocation(String building){
-	 return abhashtable.get(building);
+  return abhashtable.get(building);
  }
  
  public static Hashtable<String, Location> getDHHashTable(){
-	 return dhhashtable;
+  return dhhashtable;
  }
  
  private static double distance(Location from, Location to, Location meal) {
  return Calculations.distanceBetween(from, meal) + Calculations.distanceBetween(to, meal);
  
  }
- public static DiningHall getNearestLunch(Location from, Location to){
-	 double minimum = distance(from, to, DiningHallsList.get(0).getLocation());
-	 DiningHall nearestLunch = (DiningHall) DiningHallsList.get(0);
-	 for (BuildingI e : DiningHallsList) {
-		 double newminimum = distance(from, to, e.getLocation());
-		 if (newminimum<minimum){
-			 minimum = newminimum;
-			 nearestLunch = (DiningHall) e;
-		 }
-	 }
-	 
-	 return nearestLunch;
-	 
-	 
+ public static DiningHall getNearestDiningHall(Location from, Location to){
+  double minimum = distance(from, to, DiningHallsList.get(0).getLocation());
+  DiningHall nearestDiningHall = (DiningHall) DiningHallsList.get(0);
+  for (BuildingI e : DiningHallsList) {
+   double newminimum = distance(from, to, e.getLocation());
+   if (newminimum<minimum){
+    minimum = newminimum;
+    nearestDiningHall = (DiningHall) e;
+   }
+  }
+  
+  return nearestDiningHall;
+  
+  
  }
  
 
