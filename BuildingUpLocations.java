@@ -55,7 +55,7 @@ public class BuildingUpLocations {
   AcademicBuildingsList.add(stokessouth);
   abhashtable.put("Stokes South", new Location(42.334009, -71.171334));
   
-  BuildingI carneyhall =  new AcademicBuilding("Carney", new Location(42.333599, -71.170577));
+  BuildingI carneyhall =  new AcademicBuilding("Carney", new Location(42.333566, -71.170651));
   AcademicBuildingsList.add(carneyhall);
   abhashtable.put("Carney", new Location(42.333599, -71.170577));
   
