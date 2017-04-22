@@ -5,7 +5,7 @@
 public class Course{
 	public String name;
 	public Schedule schedule;
-	public Location location;
+	public AcademicBuilding building;
 
 	public class Schedule{
 		public Time monday;
@@ -33,7 +33,7 @@ public class Course{
 		}
 	}
 
-	public Course(String name, String schedule, String location){
+	public Course(String name, String schedule, AcademicBuilding building){
 
 		this.name = name;
 
@@ -112,7 +112,7 @@ public class Course{
 			}
 		}
 
-		this.location = BuildingUpLocations.getABLocation(location);
+		this.building = building;
 
 
 	}
