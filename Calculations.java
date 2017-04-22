@@ -79,9 +79,11 @@ public class Calculations {
   cs.add(new Course("PHYS120001", "M W F 4 30*", maloney));
   cs.add(new Course("CSCI120001", "M W F 12 30", merkert));
   Week week = new Week(cs);
+  System.out.println(week.toString());
   System.out.println(week.monday.firstEvent.building);
   week.monday.firstEvent = lunchSuggestion(week.monday.firstEvent);
-  week.toString();
+    System.out.println(week.monday.firstEvent.building);
+  System.out.println(week.toString());
   }
 
 }
