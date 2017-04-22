@@ -31,15 +31,15 @@ public class Calculations {
     if (startEvent == null) return null; //no classes, no lunch suggestion
     Event currentEvent = startEvent;
     int lunchStartDiff = 1440;
-    Event bestLunchEvent;
-    Event bestAfterEvent;
+    Event bestLunchEvent = null;
+    Event bestAfterEvent = null;
     while (currentEvent.nextEvent != null) {
       Location from = currentEvent.building.getLocation();
       Location to = currentEvent.nextEvent.building.getLocation();
       DiningHall closestDiningHall = BuildingUpLocations.getNearestDiningHall(from, to);
-      Location meal = DiningHall.getLocation();
+      Location meal = closestDiningHall.getLocation();
       double toTime = travelTime(from, meal);
-      double awayTime = travelTime(away, meal);
+      double awayTime = travelTime(to, meal);
       double totalTime = toTime + awayTime + lunchPeriod;
       int gapEnd = currentEvent.nextEvent.startMinSince12;
       int gapStart = currentEvent.endMinSince12;
@@ -66,6 +66,14 @@ public class Calculations {
     
     return startEvent;
     
+  }
+  public static void main(String[] args) {
+  List<Course> cs = new ArrayList<Course>();
+  cs.add(new Course("MATH110101", "M W F 9", null));
+  cs.add(new Course("PHYS120001", "M W F 4 30*", null));
+  cs.add(new Course("CSCI120001", "M W F 12 30", null));
+  Week week = new Week(cs);
+  
   }
 
 }
