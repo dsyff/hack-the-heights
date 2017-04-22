@@ -1,11 +1,12 @@
-public class Location {
+ public class Location {
   
-  public double Lat;
-  public double Lng;
+  public double lat;
+  public double lng;
   
   public Location(double Lat, double Lng) {
-    this.Lat = Lat;
-    this.Lng = Lng;
+    this.lat = Lat;
+    this.lng = Lng;
   }
+  
   
 }
