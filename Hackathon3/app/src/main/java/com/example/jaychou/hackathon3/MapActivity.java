@@ -35,6 +35,8 @@ import java.util.List;
 import java.util.Scanner;
 import android.content.Intent;
 import java.util.ArrayList;
+import java.util.*;
+import android.util.Log;
 
 
 public class MapActivity extends AppCompatActivity
@@ -152,6 +154,11 @@ public class MapActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
+        Calendar c = Calendar.getInstance();
+        int current = c.get(Calendar.HOUR_OF_DAY) * 60 + c.get(Calendar.MINUTE);
+        int day = c.get(Calendar.DAY_OF_WEEK);
+        boolean isCurrentDay = false;
+
         switch (item.getItemId()) {
             case R.id.menu_0:
                 // do stuff here
@@ -159,6 +166,7 @@ public class MapActivity extends AppCompatActivity
                         R.id.the_map)).getMap();
 
                 map.clear();
+
 
 
                 getPlace(namelist,schedulelist,locationlist);
@@ -176,8 +184,9 @@ public class MapActivity extends AppCompatActivity
                 map.clear();
 
 
+                isCurrentDay = (day == 2);
 
-                getPlace2(biglist.get(0));
+                getPlace2(biglist.get(0), isCurrentDay);
 
                 tv1.setText("Monday Schedule");
 
@@ -193,7 +202,9 @@ public class MapActivity extends AppCompatActivity
 
                 map.clear();
 
-                getPlace2(biglist.get(1));
+                isCurrentDay = (day == 3);
+
+                getPlace2(biglist.get(1), true);
 
                 tv1.setText("Tuesday Schedule");
 
@@ -207,7 +218,9 @@ public class MapActivity extends AppCompatActivity
 
                 map.clear();
 
-                getPlace2(biglist.get(2));
+                isCurrentDay = (day == 4);
+
+                getPlace2(biglist.get(2), isCurrentDay);
 
                 tv1.setText("Wednesday Schedule");
 
@@ -220,7 +233,9 @@ public class MapActivity extends AppCompatActivity
 
                 map.clear();
 
-                getPlace2(biglist.get(3));
+                isCurrentDay = (day == 5);
+
+                getPlace2(biglist.get(3), isCurrentDay);
                 tv1.setText("Thursday Schedule");
 
                 Toast.makeText(this, "Thursday Selected", Toast.LENGTH_SHORT).show();
@@ -235,7 +250,9 @@ public class MapActivity extends AppCompatActivity
 
                 map.clear();
 
-                getPlace2(biglist.get(4));
+                isCurrentDay = (day == 6);
+
+                getPlace2(biglist.get(4), isCurrentDay);
 
                 tv1.setText("Friday Schedule");
                 Toast.makeText(this, "Friday Selected", Toast.LENGTH_SHORT).show();
@@ -281,7 +298,24 @@ public class MapActivity extends AppCompatActivity
         // code to run when the map has loaded
 //        findPlace(); // call this --> use a geoCoder to find the location of the art
 
-        getPlace(namelist,schedulelist,locationlist);
+        //getPlace(namelist,schedulelist,locationlist);
+
+        Calendar c = Calendar.getInstance();
+        int day = c.get(Calendar.DAY_OF_WEEK);
+
+
+        // do stuff here
+        if ((day >= 2) && (day <= 6)) {
+            map = ((MapFragment) getFragmentManager().findFragmentById(
+                    R.id.the_map)).getMap();
+
+            map.clear();
+
+            getPlace2(biglist.get(day - 2), true);
+
+            tv1.setText("Schedule");
+
+        }
 
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
@@ -339,8 +373,8 @@ public class MapActivity extends AppCompatActivity
     //matched lonlat from the address
 
 
-      public void findPlace(){
-                  // loop through the ArrayList of locations and create a geocoder location for each
+    public void findPlace(){
+        // loop through the ArrayList of locations and create a geocoder location for each
         for (int i = 0; i < locationlist.size(); i++) {
 
             if (map == null) {
@@ -362,7 +396,7 @@ public class MapActivity extends AppCompatActivity
 
         }
 
-      }
+    }
 
     public void getPlace(List<String> list1,List<String> list2,List<String> list3){
         // loop through the ArrayList of locations and create a geocoder location for each
@@ -391,9 +425,12 @@ public class MapActivity extends AppCompatActivity
 
 
 
-    public void getPlace2(List<Event> levent){
+    public void getPlace2(List<Event> levent, boolean isCurrentDay){
         // loop through the ArrayList of locations and create a geocoder location for each
         for (int i = 0; i < levent.size(); i++) {
+
+            Calendar c = Calendar.getInstance();
+            int current = c.get(Calendar.HOUR_OF_DAY) * 60 + c.get(Calendar.MINUTE);
 
             if (map == null) {
                 map = ((MapFragment) getFragmentManager().findFragmentById(
@@ -404,12 +441,37 @@ public class MapActivity extends AppCompatActivity
             lng = levent.get(i).getEventLng();
             latLng = new LatLng(lat, lng);
 
+            //Log.v("xxd", Integer.toString(levent.get(i).startMinSince12));
+            //Log.v("xd", Integer.toString(current));
 
-            map.addMarker(new MarkerOptions()
-                    .position(latLng)
-                    .title(levent.get(i).getEventName().toString()+" at "+levent.get(i).getBuildingName().toString())
-                    .snippet("Schedule: " + levent.get(i).getTime().toString())
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
+
+            if (isCurrentDay && (current > levent.get(i).startMinSince12)) {                                        // Past Event
+                map.addMarker(new MarkerOptions()
+                        .position(latLng).title("Academic Building" + levent.get(i).getBuildingName())
+                        .title("Course: " + levent.get(i).getEventName())
+                        .snippet("Schedule: " + levent.get(i).getTime())
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN))
+                        .alpha(0.2f));
+            } else if (isCurrentDay && (current < levent.get(i).startMinSince12) && (levent.get(i).previousEvent.startMinSince12 < current)){                      // Next Event
+                map.addMarker(new MarkerOptions()
+                        .position(latLng).title("Academic Building" + levent.get(i).getBuildingName())
+                        .title("Course: " + levent.get(i).getEventName())
+                        .snippet("Schedule: " + levent.get(i).getTime())
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+            } else if (isCurrentDay && (current < levent.get(i).startMinSince12)) {                      // Future Event
+                map.addMarker(new MarkerOptions()
+                        .position(latLng).title("Academic Building" + levent.get(i).getBuildingName())
+                        .title("Course: " + levent.get(i).getEventName())
+                        .snippet("Schedule: " + levent.get(i).getTime())
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                        .alpha(0.5f));
+            }   else {
+                map.addMarker(new MarkerOptions()
+                        .position(latLng).title("Academic Building" + levent.get(i).getBuildingName())
+                        .title("Course: " + levent.get(i).getEventName())
+                        .snippet("Schedule: " + levent.get(i).getTime())
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+            }
 
 
         }

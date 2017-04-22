@@ -61,10 +61,12 @@ public class Event implements Comparable<Event>{
     }
 
     public String getTime(){
-        startMinSince12 = (startMinSince12 > 720) ? startMinSince12 - 720 : startMinSince12;
-        endMinSince12 = (endMinSince12 > 720) ? endMinSince12 - 720 : endMinSince12;
+        int sm = (startMinSince12 > 780) ? startMinSince12 - 720 : startMinSince12;
+        int em = (endMinSince12 > 780) ? endMinSince12 - 720 : endMinSince12;
 
-        return (startMinSince12 / 60) + ":" + (startMinSince12 % 60) + "-" + (endMinSince12 / 60) + ":" + (endMinSince12 % 60);
+        String formatTime = String.format("%2d:%2d-%2d:%2d", sm / 60, sm % 60, em / 60, em % 60);
+
+        return formatTime;
     }
 
     public String getBuildingName(){
