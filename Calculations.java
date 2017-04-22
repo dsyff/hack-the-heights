@@ -81,8 +81,7 @@ public class Calculations {
   Week week = new Week(cs);
   System.out.println(week.toString());
   System.out.println(week.monday.firstEvent.building);
-  week.monday.firstEvent = lunchSuggestion(week.monday.firstEvent);
-    System.out.println(week.monday.firstEvent.building);
+  //week.monday.firstEvent = lunchSuggestion(week.monday.firstEvent);
   System.out.println(week.toString());
   }
 

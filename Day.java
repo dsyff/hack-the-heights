@@ -96,6 +96,10 @@ public class Day{
   } else if (l.size() == 1){
    firstEvent = l.get(0);
   }
+  
+  //get lunch
+  firstEvent = Calculations.lunchSuggestion(firstEvent);
+  
   return new Day(firstEvent);
 
  }
