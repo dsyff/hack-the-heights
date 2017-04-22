@@ -112,7 +112,7 @@ public class Course{
 			}
 		}
 
-		this.location = new Location(0.0,0.0);
+		this.location = BuildingUpLocations.getABLocation(location);
 
 
 	}
