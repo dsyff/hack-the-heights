@@ -1,9 +1,13 @@
 public class Calculations {
   
   private static final double earthRadius;
+  private static final int lunchTime; //in minutes since
+  private static final int lunchPeriod; //minutes
 
   static {
     earthRadius = 6.371e6;
+    lunchTime = 1440;
+    lunchPeriod = 30;
   }
   
   private static double sine (double degrees) {return Math.sin (Math.toRadians (degrees));}
@@ -17,8 +21,28 @@ public class Calculations {
     return earthRadius * unitDistance;
   }
   
-  public static void main(String[] args) {
-    
+  
+  private static boolean isValid(Location from, Location lunch, Location to) {
+  //not implemented
+    return true;
   }
   
+  private static eventBefore(Event startEvent, int time) {
+  
+  
+  }
+  
+  public static Event lunchSuggestion(Event startEvent) {
+    lunchEvent = new Event();//ask andre for how to create event
+    if (startEvent == null) return null; //no classes, no lunch suggestion
+    Event currentEvent = startEvent;
+    int lunchStart = 0;
+    while (currentEvent.nextEvent != null) {
+      nearest
+      currentEvent = currentEvent.nextEvent;
+    }
+    
+  
+  }
+
 }
