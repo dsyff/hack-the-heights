@@ -4,24 +4,24 @@
         android:id="@+id/menu_show"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="Show Schedule on Map"/>
+        android:title="Show"/>
 
     <item
         android:id="@+id/menu_add"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="Add a Course"/>
+        android:title="Add"/>
 
     <item
         android:id="@+id/menu_delete"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title=" "/>
+        android:title="Delete"/>
 
     <item
         android:id="@+id/menu_zhanglang"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title=" "/>
+        android:title="ZHANGLANG"/>
 
 </menu>

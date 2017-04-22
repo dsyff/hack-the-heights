@@ -18,10 +18,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:text="Course Number: "
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle="normal|bold"
-            android:textColor="@android:color/background_dark"
-            android:textSize="20sp" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
             android:id="@+id/et1"
@@ -44,10 +41,7 @@
             android:layout_height="40dp"
 
             android:text="Course Schedule: "
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle="normal|bold"
-            android:textColor="@color/wallet_bright_foreground_holo_light"
-            android:textSize="20sp" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
             android:id="@+id/et2"
@@ -71,10 +65,7 @@
             android:layout_height="40dp"
 
             android:text="Course Location: "
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@android:color/black"
-            android:textStyle="normal|bold"
-            android:textSize="20sp" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Spinner
             android:id="@+id/abspinner"

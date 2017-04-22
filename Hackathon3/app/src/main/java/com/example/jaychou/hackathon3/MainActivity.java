@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> namelist;
     private ArrayList<String> schedulelist;
     private ArrayList<String> locationlist;
-    private String  bding;
 
 
     ArrayList<String> generallist;
@@ -93,18 +92,6 @@ public class MainActivity extends AppCompatActivity {
             generallist.add(s);
         }
 
-//        List<Course> l = new ArrayList<Course>();
-//        for (int i = 0; i < namelist.size(); i++){
-//            AcademicBuilding ab = BuildingUpLocations.getAcademicBuilding(locationlist.get(i));
-//            Course c = new Course(namelist.get(i), schedulelist.get(i), ab);
-//            l.add(c);
-//        }
-//        Week week = new Week(l);
-//
-//        // Test one event
-//        Event event = week.monday.firstEvent;
-//        String name = event.name;
-//        bding = event.building.getBuildingName();
 
 
         lv = (ListView) findViewById(R.id.lv);
@@ -126,24 +113,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent edit = new Intent(MainActivity.this, EditActivity.class);
-                String s1=namelist.get(position);
-                String s2=schedulelist.get(position);
-                String s3=locationlist.get(position);
-
-                edit.putExtra("s1",s1);
-                edit.putExtra("s2",s2);
-                edit.putExtra("s3",s3);
-                edit.putExtra("pos",Integer.toString(position));
-
-
-                startActivity(edit);
-            }
-        });
 
         //test position
         String s=locationlist.get(0);
@@ -199,7 +168,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.menu_delete:
 //                // do stuff here
-
+//                Intent deleteIntent = new Intent(MainActivity.this, DeleteActivity.class);
+//                startActivityForResult(deleteIntent, 103);
                 Toast.makeText(this, "Delete Selected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menu_zhanglang:

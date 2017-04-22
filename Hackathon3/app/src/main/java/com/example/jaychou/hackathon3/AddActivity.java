@@ -68,9 +68,9 @@ public class AddActivity extends AppCompatActivity {
         saveStringToFile("courseLocationTemp1.txt",s3+"\n");
         Toast.makeText(this, s1+" "+s2+" "+s3, Toast.LENGTH_SHORT).show();
 
-        /*AcademicBuilding ab = BuildingUpLocations.getAcademicBuilding(s3);
+        AcademicBuilding ab = BuildingUpLocations.getAcademicBuilding(s3);
         Course c = new Course(s1, s2, ab);
-        List<Course> l = new ArrayList<Course>();*/
+        List<Course> l = new ArrayList<Course>();
 
 
 

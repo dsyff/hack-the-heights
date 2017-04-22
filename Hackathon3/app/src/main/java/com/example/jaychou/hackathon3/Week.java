@@ -34,66 +34,6 @@ public class Week{
         return s;
     }
 
-    public List<List<Event>> listView(){
-        ArrayList<List<Event>> l = new ArrayList<List<Event>>();
-        ArrayList<Event> m = new ArrayList<Event>();
-        if (monday.firstEvent == null){
-            l.add(m);
-        } else {
-            Event e = monday.firstEvent;
-            while (e != null){
-                m.add(e);
-                e = e.nextEvent;
-            }
-            l.add(m);
-        }
-        ArrayList<Event> t = new ArrayList<Event>();
-        if (tuesday.firstEvent == null){
-            l.add(t);
-        } else {
-            Event e = tuesday.firstEvent;
-            while (e != null){
-                t.add(e);
-                e = e.nextEvent;
-            }
-            l.add(t);
-        }
-        ArrayList<Event> w = new ArrayList<Event>();
-        if (wednesday.firstEvent == null){
-            l.add(w);
-        } else {
-            Event e = wednesday.firstEvent;
-            while (e != null){
-                w.add(e);
-                e = e.nextEvent;
-            }
-            l.add(w);
-        }
-        ArrayList<Event> th = new ArrayList<Event>();
-        if (thursday.firstEvent == null){
-            l.add(th);
-        } else {
-            Event e = thursday.firstEvent;
-            while (e != null){
-                th.add(e);
-                e = e.nextEvent;
-            }
-            l.add(th);
-        }
-        ArrayList<Event> f = new ArrayList<Event>();
-        if (friday.firstEvent == null){
-            l.add(f);
-        } else {
-            Event e = friday.firstEvent;
-            while (e != null){
-                f.add(e);
-                e = e.nextEvent;
-            }
-            l.add(f);
-        }
-        return l;
-    }
-
     public static void main(String[] args){
         List<Course> cs = new ArrayList<Course>();
         cs.add(new Course("MATH110101", "M W F 9", null));
@@ -105,7 +45,5 @@ public class Week{
         System.out.println(week.toString());
 
     }
-
-
 }
 
