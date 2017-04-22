@@ -114,7 +114,7 @@ public class BuildingUpLocations {
   
 }
  
- public Location getABLocation(String building){
+ public static Location getABLocation(String building){
 	 BuildingI bd = abhashtable.get(building);
 	 return bd.getLocation();
  }
