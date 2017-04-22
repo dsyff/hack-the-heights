@@ -114,12 +114,32 @@ public class BuildingUpLocations {
   
 }
  
- public Location getABLocation(String building){
+ public static Location getABLocation(String building){
 	 return abhashtable.get(building);
  }
  
- public Hashtable<String, Location> getDHHashTable(){
+ public static Hashtable<String, Location> getDHHashTable(){
 	 return dhhashtable;
+ }
+ 
+ private static double distance(Location from, Location to, Location meal) {
+ return Calculations.distanceBetween(from, meal) + Calculations.distanceBetween(to, meal);
+ 
+ }
+ public static DiningHall getNearestLunch(Location from, Location to){
+	 double minimum = distance(from, to, DiningHallsList.get(0).getLocation());
+	 DiningHall nearestLunch = (DiningHall) DiningHallsList.get(0);
+	 for (BuildingI e : DiningHallsList) {
+		 double newminimum = distance(from, to, e.getLocation());
+		 if (newminimum<minimum){
+			 minimum = newminimum;
+			 nearestLunch = (DiningHall) e;
+		 }
+	 }
+	 
+	 return nearestLunch;
+	 
+	 
  }
  
 

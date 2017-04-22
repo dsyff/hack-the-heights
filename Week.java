@@ -27,7 +27,7 @@ public class Week{
 		return s;
 	}
 
-	/*public static void main(String[] args){
+	public static void main(String[] args){
 		List<Course> cs = new ArrayList<Course>();
 		cs.add(new Course("MATH110101", "M W F 9", "FULTON"));
 		cs.add(new Course("PHYS120001", "M W F 4 30*", "FULTON"));
@@ -35,5 +35,5 @@ public class Week{
 		Week week = new Week(cs);
 		System.out.println(week.toString());
 
-	}*/
+	}
 }
