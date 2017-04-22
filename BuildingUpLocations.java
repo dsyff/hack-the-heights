@@ -94,9 +94,9 @@ public class BuildingUpLocations {
   
   
 
-  DiningHall thebeancounter = new DiningHall("Hillside", new Location(42.334489, -71.170198),"This food shop is located on the first floor of Fulton. Mealplan not accpeted.");
+  DiningHall thebeancounter = new DiningHall("The Bean Counter", new Location(42.334489, -71.170198),"This food shop is located on the first floor of Fulton. Mealplan not accpeted.");
   diningHallsList.add(thebeancounter);
-  dhhashtable.put("Hillside", new Location(42.336313, -71.168556));
+  dhhashtable.put("The Bean Counter", new Location(42.334489, -71.170198));
   
   DiningHall chocolatebar = new DiningHall("The Chocolate Bar", new Location(42.334030, -71.171324),"This dining hall is located on the first floor of Stokes South. Mealplan not accpeted.");
   diningHallsList.add(chocolatebar);
@@ -128,11 +128,11 @@ public class BuildingUpLocations {
  public static DiningHall getNearestDiningHall(Location from, Location to) {
   double minimum = distance(from, to, diningHallsList.get(0).getLocation());
   DiningHall nearestDiningHall = (DiningHall) diningHallsList.get(0);
-  for (BuildingI e : diningHallsList) {
+  for (DiningHall e : diningHallsList) {
    double newminimum = distance(from, to, e.getLocation());
    if (newminimum<minimum){
     minimum = newminimum;
-    nearestDiningHall = (DiningHall) e;
+    nearestDiningHall = e;
    }
   }
   

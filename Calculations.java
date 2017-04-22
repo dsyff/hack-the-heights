@@ -22,6 +22,7 @@ public class Calculations {
     double lngDiff = pt2.lng - pt1.lng;
     double haversine = Math.pow(sine(latDiff/2), 2.0) + cosine(pt1.lat) * cosine(pt2.lat) * Math.pow(sine(lngDiff/2), 2);
     double unitDistance = 2 * Math.atan2(Math.sqrt(haversine), Math.sqrt(1 - haversine));
+    assert unitDistance > 0;
     return earthRadius * unitDistance;
   }
   
@@ -69,17 +70,22 @@ public class Calculations {
     return startEvent;
     
   }
+  
   public static void main(String[] args) {
   AcademicBuilding gasson = BuildingUpLocations.getAcademicBuilding("Gasson");
    System.out.println(gasson);
   AcademicBuilding maloney = BuildingUpLocations.getAcademicBuilding("Maloney");
   AcademicBuilding merkert = BuildingUpLocations.getAcademicBuilding("Merkert");
+  AcademicBuilding fulton = BuildingUpLocations.getAcademicBuilding("Fulton");
+   AcademicBuilding lyons = BuildingUpLocations.getAcademicBuilding("Lyons");
+  
   List<Course> cs = new ArrayList<Course>();
   cs.add(new Course("MATH110101", "M W F 9", gasson));
   cs.add(new Course("PHYS120001", "M W F 4 30*", maloney));
   cs.add(new Course("CSCI120001", "M W F 12 30", merkert));
+  cs.add(new Course("CSCI120001", "T TH 10 30", gasson));
+  cs.add(new Course("CSCI120001", "T TH 12 30", fulton));
   Week week = new Week(cs);
-  System.out.println(week.toString());
   System.out.println(week.monday.firstEvent.building);
   //week.monday.firstEvent = lunchSuggestion(week.monday.firstEvent);
   System.out.println(week.toString());
