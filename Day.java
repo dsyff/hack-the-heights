@@ -18,8 +18,8 @@ public class Day{
 				Course course = cs.get(i);
 				if (course.schedule.monday != null){
 					Event event = new Event();
-					event.startMinSince12 = course.schedule.monday.beginhour * 60 + course.schedule.monday.beginmin;
-					event.endMinSince12 = course.schedule.monday.endhour * 60 + course.schedule.monday.endmin;
+					event.startMinSince12 = course.schedule.monday.beginminsince12;
+					event.endMinSince12 = course.schedule.monday.endminsince12;
 					event.course = course;
 					l.add(event);
 				}
@@ -30,8 +30,8 @@ public class Day{
 				Course course = cs.get(i);
 				if (course.schedule.tuesday != null){
 					Event event = new Event();
-					event.startMinSince12 = course.schedule.tuesday.beginhour * 60 + course.schedule.tuesday.beginmin;
-					event.endMinSince12 = course.schedule.tuesday.endhour * 60 + course.schedule.tuesday.endmin;
+					event.startMinSince12 = course.schedule.tuesday.beginminsince12;
+					event.endMinSince12 = course.schedule.tuesday.endminsince12;
 					event.course = course;
 					l.add(event);
 				}
@@ -41,8 +41,8 @@ public class Day{
 				Course course = cs.get(i);
 				if (course.schedule.wednesday != null){
 					Event event = new Event();
-					event.startMinSince12 = course.schedule.wednesday.beginhour * 60 + course.schedule.wednesday.beginmin;
-					event.endMinSince12 = course.schedule.wednesday.endhour * 60 + course.schedule.wednesday.endmin;
+					event.startMinSince12 = course.schedule.wednesday.beginminsince12;
+					event.endMinSince12 = course.schedule.wednesday.endminsince12;
 					event.course = course;
 					l.add(event);
 				}
@@ -52,8 +52,8 @@ public class Day{
 				Course course = cs.get(i);
 				if (course.schedule.thursday != null){
 					Event event = new Event();
-					event.startMinSince12 = course.schedule.thursday.beginhour * 60 + course.schedule.thursday.beginmin;
-					event.endMinSince12 = course.schedule.thursday.endhour * 60 + course.schedule.thursday.endmin;
+					event.startMinSince12 = course.schedule.thursday.beginminsince12;
+					event.endMinSince12 = course.schedule.thursday.endminsince12;
 					event.course = course;
 					l.add(event);
 				}
@@ -63,8 +63,8 @@ public class Day{
 				Course course = cs.get(i);
 				if (course.schedule.friday != null){
 					Event event = new Event();
-					event.startMinSince12 = course.schedule.friday.beginhour * 60 + course.schedule.friday.beginmin;
-					event.endMinSince12 = course.schedule.friday.endhour * 60 + course.schedule.friday.endmin;
+					event.startMinSince12 = course.schedule.friday.beginminsince12;
+					event.endMinSince12 = course.schedule.friday.endminsince12;
 					event.course = course;
 					l.add(event);
 				}
@@ -75,7 +75,7 @@ public class Day{
 
 		
 		Event firstEvent = null;
-		if (l.size() != 0) {
+		if (l.size() > 1) {
 			firstEvent = l.get(0);
 			l.get(0).nextEvent = l.get(1);
 			l.get(l.size() - 1).previousEvent = l.get(l.size() - 2);
@@ -83,10 +83,20 @@ public class Day{
 				l.get(i).nextEvent = l.get(i+1);
 				l.get(i+1).previousEvent = l.get(i);
 			}
+		} else if (l.size() == 1){
+			firstEvent = l.get(0);
 		}
 		return new Day(firstEvent);
 
+	}
 
-
+	public String toString(){
+		Event current = this.firstEvent;
+		String s = "";
+		while(current != null){
+			s += (current.toString() + "\n");
+			current = current.nextEvent;			
+		}
+		return s;
 	}
 }
