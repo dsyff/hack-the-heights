@@ -1,0 +1,11 @@
+public class Calculations {
+  
+  private static final double earthRadius = ;
+    public double distanceBetween (Location pt1; Location pt2) {
+    double 
+     
+  }
+
+
+
+}
