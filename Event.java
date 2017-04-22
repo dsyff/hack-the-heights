@@ -5,7 +5,7 @@ public class Event implements Comparable<Event>{
 	public int startMinSince12;
 	public int endMinSince12;
 	public Course course;
-	public AcademicBuilding building;
+	public BuildingI building;
 	public String name;
 	public Event previousEvent;
 	public Event nextEvent;
@@ -29,7 +29,7 @@ public class Event implements Comparable<Event>{
 		this.nextEvent = ne;
 	}
 
-	public Event(int s, int e, AcademicBuilding building, String name, Event pe, Event ne){
+	public Event(int s, int e, DiningHall building, String name, Event pe, Event ne){
 		this.startMinSince12 = s;
 		this.endMinSince12 = e;
 		this.building = building;
