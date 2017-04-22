@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Calculations {
   
   private static final double earthRadius;
@@ -34,6 +36,7 @@ public class Calculations {
     Event bestLunchEvent = null;
     Event bestAfterEvent = null;
     while (currentEvent.nextEvent != null) {
+      System.out.println(currentEvent.building);
       Location from = currentEvent.building.getLocation();
       Location to = currentEvent.nextEvent.building.getLocation();
       DiningHall closestDiningHall = BuildingUpLocations.getNearestDiningHall(from, to);
@@ -68,12 +71,14 @@ public class Calculations {
     
   }
   public static void main(String[] args) {
+  
   List<Course> cs = new ArrayList<Course>();
   cs.add(new Course("MATH110101", "M W F 9", null));
   cs.add(new Course("PHYS120001", "M W F 4 30*", null));
   cs.add(new Course("CSCI120001", "M W F 12 30", null));
   Week week = new Week(cs);
-  
+  week.monday.firstEvent = lunchSuggestion(week.monday.firstEvent);
+  week.toString();
   }
 
 }
