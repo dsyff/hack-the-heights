@@ -45,4 +45,27 @@ public class Event implements Comparable<Event>{
  public String toString(){
   return name + " " + building.getBuildingName();
  }
+
+ public String getEventName(){
+  return name;
+ }
+
+ public String getTime(){
+  startMinSince12 = (startMinSince12 > 720) ? startMinSince12 - 720 : startMinSince12;
+  endMinSince12 = (endMinSince12 > 720) ? endMinSince12 - 720 : endMinSince12;
+
+  return (startMinSince12 / 60) + ":" + (startMinSince12 % 60) + "-" + (endMinSince12 / 60) + ":" + (endMinSince12 % 60);
+ }
+
+ public String getBuildingName(){
+  return building.getBuildingName();
+ }
+
+ public double getEventLat(){
+  return building.getLocation().lat;
+ }
+
+ public double getEventLng(){
+  return building.getLocation().lng;
+ }
 }
