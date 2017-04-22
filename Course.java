@@ -13,22 +13,32 @@ public class Course{
 		public Time wednesday;
 		public Time thursday;
 		public Time friday;
+
+	 	public Schedule(){
+	 		this.monday = null;
+	 		this.tuesday = null;
+	 		this.wednesday = null;
+	 		this.thursday = null;
+	 		this.friday = null;
+	 	}
 	}
 
 	public class Time{
-		public int beginhour;
-		public int beginmin;
-		public int endhour;
-		public int endmin;
+		public int beginminsince12;
+		public int endminsince12;
+
+		public Time(int bm, int em){
+			beginminsince12 = bm;
+			endminsince12 = em;
+		}
 	}
 
-	public static Course getCourse(String name, String schedule, String location){
-		Course event = new Course();
+	public Course(String name, String schedule, String location){
 
-		event.name = name;
+		this.name = name;
 
 		int length = 0;
-		if (schedule.charAt(schedule.length()) == '*'){
+		if (schedule.charAt(schedule.length() - 1) == '*'){
 			length = 1;
 			schedule = schedule.substring(0, schedule.length() - 1);
 		} 
@@ -41,57 +51,78 @@ public class Course{
 		while (!isNumeric(sche[i]))	i++;
 		int bh = Integer.parseInt(sche[i]);
 		int bm = 0;
-		if (i < sche.length - 1) bm = Integer.parseInt(sche[i + 1]);
+		if ((i < sche.length - 1) && (isNumeric(sche[i + 1]))) bm = Integer.parseInt(sche[i + 1]);
 		int begintime = bh * 60 + bm;
+		if (bh < 8) begintime = begintime + 720;
 		int endtime = begintime + 50;
 		if (length == 1){
 			endtime = begintime + 75;
 		} else if (length == 2){
 			endtime = begintime + 140;
 		}
-		endtime = (endtime > 1440) ? endtime - 1440 : endtime;
-		int eh = endtime % 60;
-		int em = endtime / 60;
 
-		for (int j = 0; j < 2; j++){
+		for (int j = 0; j < 3; j++){
 			if (!isNumeric(sche[j])){
 				if (sche[j].equals("M")){
-					event.schedule.monday.beginhour = bh;
-					event.schedule.monday.beginmin = bm;
-					event.schedule.monday.endhour = eh;
-					event.schedule.monday.endmin = em;
+					Time monday = new Time(begintime, endtime);
+					if (this.schedule == null){
+						Schedule sc = new Schedule();
+						sc.monday = monday;
+						this.schedule = sc;
+					} else {
+						this.schedule.monday = monday;
+					}
 				} else if (sche[j].equals("T")){
-					event.schedule.tuesday.beginhour = bh;
-					event.schedule.tuesday.beginmin = bm;
-					event.schedule.tuesday.endhour = eh;
-					event.schedule.tuesday.endmin = em;
+					Time tuesday = new Time(begintime, endtime);
+					if (this.schedule == null){
+						Schedule sc = new Schedule();
+						sc.tuesday = tuesday;
+						this.schedule = sc;
+					} else {
+						this.schedule.tuesday = tuesday;
+					}
 				} else if (sche[j].equals("W")){
-					event.schedule.wednesday.beginhour = bh;
-					event.schedule.wednesday.beginmin = bm;
-					event.schedule.wednesday.endhour = eh;
-					event.schedule.wednesday.endmin = em;
+					Time wednesday = new Time(begintime, endtime);
+					if (this.schedule == null){
+						Schedule sc = new Schedule();
+						sc.wednesday = wednesday;
+						this.schedule = sc;
+					} else {
+						this.schedule.wednesday = wednesday;
+					}
 				} else if (sche[j].equals("TH")){
-					event.schedule.thursday.beginhour = bh;
-					event.schedule.thursday.beginmin = bm;
-					event.schedule.thursday.endhour = eh;
-					event.schedule.thursday.endmin = em;
+					Time thursday = new Time(begintime, endtime);
+					if (this.schedule == null){
+						Schedule sc = new Schedule();
+						sc.thursday = thursday;
+						this.schedule = sc;
+					} else {
+						this.schedule.thursday = thursday;
+					}
 				} else if (sche[j].equals("F")){
-					event.schedule.friday.beginhour = bh;
-					event.schedule.friday.beginmin = bm;
-					event.schedule.friday.endhour = eh;
-					event.schedule.friday.endmin = em;
+					Time friday = new Time(begintime, endtime);
+					if (this.schedule == null){
+						Schedule sc = new Schedule();
+						sc.friday = friday;
+						this.schedule = sc;
+					} else {
+						this.schedule.friday = friday;
+					}
 				} 
 			}
 		}
 
-		event.location = new Location(0.0, 0.0);
+		this.location = new Location(0.0, 0.0);
 
-		return event;
 
 	}
 
 	private static boolean isNumeric(String s){
 		return ((s.charAt(0) <= '9') && (s.charAt(0) >= '0'));
+	}
+
+	public String toString(){
+		return this.name;
 	}
 
 
