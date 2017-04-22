@@ -19,11 +19,6 @@ public class Calculations {
   
   public static void main(String[] args) {
     
-    Location gasson = new Location (42.335573, -71.170486);
-    Location maloney = new Location (42.336108, -71.168435);
-    System.out.println(gasson.lat);
-    System.out.println(distanceBetween(gasson, maloney));
-    
   }
   
 }
