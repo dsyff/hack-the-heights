@@ -36,7 +36,7 @@ public class Calculations {
     while (currentEvent.nextEvent != null) {
       Location from = currentEvent.building.getLocation();
       Location to = currentEvent.nextEvent.building.getLocation();
-      DiningHall closestDiningHall = BuildingUpLocations.getNearest(from, to);
+      DiningHall closestDiningHall = BuildingUpLocations.getNearestDiningHall(from, to);
       Location meal = DiningHall.getLocation();
       double toTime = travelTime(from, meal);
       double awayTime = travelTime(away, meal);
@@ -61,7 +61,7 @@ public class Calculations {
     
     if (bestLunchEvent != null) {
       bestAfterEvent.nextEvent.previousEvent = bestLunchEvent;
-      bestAfterEVent.nextEvent = bestLunchEvent;
+      bestAfterEvent.nextEvent = bestLunchEvent;
     }
     
     return startEvent;
