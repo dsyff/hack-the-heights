@@ -4,7 +4,7 @@
 public class Event implements Comparable<Event>{
 	public int startMinSince12;
 	public int endMinSince12;
-	private Course course;
+	public Course course;
 	public Location location;
 	public String name;
 	public Event previousEvent;
@@ -32,8 +32,8 @@ public class Event implements Comparable<Event>{
 	public Event(int s, int e, Location location, String name, Event pe, Event ne){
 		this.startMinSince12 = s;
 		this.endMinSince12 = e;
-		this.location = c.location;
-		this.name = c.name;
+		this.location = location;
+		this.name = name;
 		this.previousEvent = pe;
 		this.nextEvent = ne;
 	}
