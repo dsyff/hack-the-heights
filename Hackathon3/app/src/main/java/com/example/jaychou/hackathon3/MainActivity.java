@@ -127,6 +127,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent edit = new Intent(MainActivity.this, EditActivity.class);
+                String s1=namelist.get(position);
+                String s2=schedulelist.get(position);
+                String s3=locationlist.get(position);
+
+                edit.putExtra("s1",s1);
+                edit.putExtra("s2",s2);
+                edit.putExtra("s3",s3);
+                edit.putExtra("pos",Integer.toString(position));
+
+
+                startActivity(edit);
+            }
+        });
+
         //test position
         String s=locationlist.get(0);
 
@@ -171,7 +189,6 @@ public class MainActivity extends AppCompatActivity {
 //                startActivityForResult(addIntent, 101);
                 Toast.makeText(this, "Show Selected", Toast.LENGTH_SHORT).show();
                 Intent map = new Intent(getApplicationContext(), MapActivity.class);
-//                map.putExtra("Bdname",bding);
                 startActivity(map);
                 return true;
             case R.id.menu_add:
@@ -182,8 +199,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.menu_delete:
 //                // do stuff here
-//                Intent deleteIntent = new Intent(MainActivity.this, DeleteActivity.class);
-//                startActivityForResult(deleteIntent, 103);
+
                 Toast.makeText(this, "Delete Selected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menu_zhanglang:

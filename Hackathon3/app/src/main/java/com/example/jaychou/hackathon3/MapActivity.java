@@ -153,6 +153,20 @@ public class MapActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
+            case R.id.menu_0:
+                // do stuff here
+                map = ((MapFragment) getFragmentManager().findFragmentById(
+                        R.id.the_map)).getMap();
+
+                map.clear();
+
+
+                getPlace(namelist,schedulelist,locationlist);
+
+                tv1.setText("Weekly Schedule");
+
+
+                return true;
 
             case R.id.menu_1:
                 // do stuff here
@@ -169,10 +183,8 @@ public class MapActivity extends AppCompatActivity
 
                 Toast.makeText(this, "Monday Selected", Toast.LENGTH_SHORT).show();
 
-
-
-//
                 return true;
+
             case R.id.menu_2:
                 // do stuff here
 
@@ -228,6 +240,18 @@ public class MapActivity extends AppCompatActivity
                 tv1.setText("Friday Schedule");
                 Toast.makeText(this, "Friday Selected", Toast.LENGTH_SHORT).show();
                 return true;
+
+
+
+            case R.id.menu_6:
+                // do stuff here
+
+                Intent back=new Intent(MapActivity.this, MainActivity.class);
+                startActivity(back);
+
+                return true;
+
+
 
 
             default:
@@ -355,8 +379,8 @@ public class MapActivity extends AppCompatActivity
 
 
             map.addMarker(new MarkerOptions()
-                    .position(latLng).title("Academic Building"+list3.get(i).toString())
-                    .title("Course: " + list1.get(i).toString())
+                    .position(latLng)
+                    .title(list1.get(i).toString()+" at "+list3.get(i).toString())
                     .snippet("Schedule: " + list2.get(i).toString())
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
 
@@ -382,8 +406,8 @@ public class MapActivity extends AppCompatActivity
 
 
             map.addMarker(new MarkerOptions()
-                    .position(latLng).title("Academic Building"+levent.get(i).getBuildingName().toString())
-                    .title("Course: " + levent.get(i).getEventName().toString())
+                    .position(latLng)
+                    .title(levent.get(i).getEventName().toString()+" at "+levent.get(i).getBuildingName().toString())
                     .snippet("Schedule: " + levent.get(i).getTime().toString())
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
 
